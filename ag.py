@@ -1,6 +1,8 @@
 import math
 import numpy as np
 
+
+
 respuesta = input("escribe 1 si quieres ajustar los parametros, escribe 0 para correr con los valores default")
 
 if int(respuesta) == 1:
@@ -24,12 +26,35 @@ else:
     CHROMOSOME_LENGTH = 5
     #value vector example, later we can ask for parameter specification through console
     VALUE_VECTOR = [1,2,3,4,5]
+    WEIGHTS_VECTOR = [5,4,3,2,1]
+    MAX_WEIGHT = 10
     # constante para que el operador de cruza solo cambie un bit por default, y se el usuario
     # quiere puede cambiar mas
     BITS_MUTACION = 1
     SURVIVOR_PERCENTAGE=0.1
     PORCENTAJE_MUTACION=0.1
     PORCENTAJE_REPRODUCCION=1
+    
+    
+    
+# class Individual:
+#     def __init__(self, chromosome, chromosome_length):
+#         self.chromosome = chromosome
+#         self.chromosome_length = chromosome_length
+    
+    
+# class Population:
+#     def __init__(self, pop_size=POPULATION_SIZE, ):
+        
+        
+# class ModelAG:
+#     def __init__(self, learning_rate):
+    
+
+#function to check if an individual represents a valid solution
+# a valid solution is one where the total weights don't exceed the weight limit for the problem
+def valid_individual(individual, weights=WEIGHTS_VECTOR, max_weight=MAX_WEIGHT):
+    return 
 
 def random_init(longitud_cromosoma, tam_poblacion):
     poblacion = list()
