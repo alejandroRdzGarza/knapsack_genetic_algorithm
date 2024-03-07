@@ -11,6 +11,8 @@ if int(respuesta) == 1:
     CHROMOSOME_LENGTH = input("Largo cromosomico")
     #value vector example, later we can ask for parameter specification through console
     VALUE_VECTOR = input("Escribe el vector de valores usando [] y separando los valores con comas")
+    WEIGHTS_VECTOR = input("Escribe el vector de pesos usando [] y separando los valores con comas")
+    MAX_WEIGHT = input("Escribe el peso maximo del problema")
     # constante para que el operador de cruza solo cambie un bit por default, y se el usuario
     # quiere puede cambiar mas
     BITS_MUTACION = input("Numero de genes a mutar como maximo por individuo")
@@ -47,14 +49,20 @@ else:
 #     def __init__(self, pop_size=POPULATION_SIZE, ):
         
         
-# class ModelAG:
+# class ModelAG:®
 #     def __init__(self, learning_rate):
     
 
 #function to check if an individual represents a valid solution
 # a valid solution is one where the total weights don't exceed the weight limit for the problem
 def valid_individual(individual, weights=WEIGHTS_VECTOR, max_weight=MAX_WEIGHT):
-    return 
+    peso_total = 0
+    for i in range(len(individual)):
+        if(individual[i] == 1):
+            peso_total+=weights[i]
+        if(peso_total > max_weight):
+            return False
+    return True
 
 def random_init(longitud_cromosoma, tam_poblacion):
     poblacion = list()
@@ -70,13 +78,15 @@ def random_init(longitud_cromosoma, tam_poblacion):
     return poblacion
 
 
-def fitness_func(cromosoma, value_vector=VALUE_VECTOR):
+def fitness_func(cromosoma, value_vector=VALUE_VECTOR, weights_vector=WEIGHTS_VECTOR):
     score = 0
-    for i in range(len(cromosoma)):
-        if cromosoma[i] != 0:
-            score+=value_vector[i]
-
-    return score
+    if(valid_individual(cromosoma)):
+        for i in range(len(cromosoma)):
+            if cromosoma[i] != 0:
+                score+=value_vector[i]
+        return score
+    else:
+        return -1
     
     
 def selection_operator(survivor_percentage, poblacion):
